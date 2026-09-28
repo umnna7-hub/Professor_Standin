@@ -1,12 +1,226 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Professor Stand-In</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professor Stand-In — Academic Assistant</title>
+  <meta name="description" content="AI academic assistant acting as a digital stand-in for university professors based on curated interview knowledge.">
+
+  <!-- Typography: Newsreader (Headings), Inter (UI), JetBrains Mono (Code) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+  <!-- SVG Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='18'>📖</text></svg>">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <div id="root"></div>
-  <script type="module" src="/src/main.jsx"></script>
+  <div class="app-shell">
+    
+    <!-- ======================================================================
+         SIDEBAR NAVIGATION (Exact Wireframe Layout & Icons)
+         ====================================================================== -->
+    <aside class="app-sidebar" aria-label="Main Navigation">
+      <div class="sidebar-top">
+        <!-- Exact Wireframe Top Squircle Logo Button -->
+        <button id="sidebar-logo-btn" class="sidebar-logo-btn" title="Professor Stand-In Home" aria-label="Home">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+        </button>
+
+        <!-- Vertical Menu Icons -->
+        <nav class="sidebar-nav">
+          <!-- 1. Home (House) -->
+          <button class="nav-item active" data-tab="home" aria-label="Home">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span class="nav-tooltip">Home</span>
+          </button>
+
+          <!-- 2. Chat / Messages (Speech Bubble) -->
+          <button class="nav-item" data-tab="chat" aria-label="Chat & Q&A">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <span class="nav-tooltip">Chat with Professor</span>
+          </button>
+
+          <!-- 3. Knowledge Base (Stacked Books - Wireframe 1 & 2) -->
+          <button class="nav-item" data-tab="knowledge" aria-label="Knowledge Base">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              <path d="M2 15.5A2.5 2.5 0 0 1 4.5 13H18"></path>
+            </svg>
+            <span class="nav-tooltip">Knowledge Base</span>
+          </button>
+
+          <!-- 4. History (Clock with arrow - Wireframe 3) -->
+          <button class="nav-item" data-tab="history" aria-label="Conversation History">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            <span class="nav-tooltip">Inquiry History</span>
+          </button>
+
+          <!-- 5. About / System Architecture (Question mark in circle - Wireframe 4) -->
+          <button class="nav-item" data-tab="about" aria-label="System Transparency & Ethics">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12.01" y2="17"></line>
+            </svg>
+            <span class="nav-tooltip">About & Ethics</span>
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-divider"></div>
+
+        <!-- 6. Settings (Sliders - Wireframe 5) -->
+        <button class="nav-item" data-tab="settings" aria-label="Settings">
+          <svg viewBox="0 0 24 24">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+          <span class="nav-tooltip">Preferences</span>
+        </button>
+
+        <!-- Exact Wireframe "DA" / "MS" Avatar Circle -->
+        <button id="sidebar-avatar-btn" class="sidebar-avatar-btn" title="View Professor Credentials" aria-label="Professor Credentials">
+          <span class="mentor-avatar-text">DA</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ======================================================================
+         MAIN CONTENT STAGE
+         ====================================================================== -->
+    <main class="app-main">
+      <!-- Top Branding & Status Header -->
+      <header class="app-header">
+        <div class="header-brand">
+          <!-- Inline SVG Brand Wordmark: Open Book arch bridge + 2 connected nodes -->
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" style="flex-shrink: 0;">
+            <!-- Book Spine Arch (Bridge) -->
+            <path d="M4 24C8 23 12 21 16 23C20 21 24 23 28 24V9C24 8 20 6 16 8C12 6 8 8 4 9V24Z" stroke="var(--text-primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 8V23" stroke="var(--text-primary)" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- 2 Connected Nodes above bridge -->
+            <line x1="12" y1="4" x2="20" y2="4" stroke="var(--accent-gold)" stroke-width="1.5"/>
+            <circle cx="12" cy="4" r="2" fill="var(--accent-gold)"/>
+            <circle cx="20" cy="4" r="2" fill="var(--accent-gold)"/>
+          </svg>
+
+          <div class="header-wordmark">
+            <span class="brand-prof">Professor</span>
+            <span class="brand-standin">Stand-In</span>
+          </div>
+
+          <div class="header-tagline">
+            Your professor, when you need guidance.
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div id="backend-status-chip" class="status-chip" title="Live status of FastAPI knowledge backend">
+            <span id="backend-status-dot" class="status-dot"></span>
+            <span id="backend-status-text">Checking backend...</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Tab Views Container -->
+      <div class="tab-container">
+        <!-- 1. Home Tab View -->
+        <section id="tab-home" class="tab-pane active" aria-labelledby="Home View"></section>
+
+        <!-- 2. Chat Tab View -->
+        <section id="tab-chat" class="tab-pane" aria-labelledby="Chat View"></section>
+
+        <!-- 3. Knowledge Tab View (Wireframe 1) -->
+        <section id="tab-knowledge" class="tab-pane" aria-labelledby="Knowledge View"></section>
+
+        <!-- 4. History Tab View (Wireframe 3) -->
+        <section id="tab-history" class="tab-pane" aria-labelledby="History View"></section>
+
+        <!-- 5. About Tab View (Wireframe 4) -->
+        <section id="tab-about" class="tab-pane" aria-labelledby="About View"></section>
+
+        <!-- 6. Settings Tab View (Wireframe 5) -->
+        <section id="tab-settings" class="tab-pane" aria-labelledby="Settings View"></section>
+      </div>
+    </main>
+
+    <!-- ======================================================================
+         PROFESSOR PROFILE MODAL (Triggered from bottom avatar)
+         ====================================================================== -->
+    <div id="prof-profile-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="prof-modal-title">
+      <div class="modal-content">
+        <button id="prof-modal-close" class="modal-close-btn" aria-label="Close dialog">✕</button>
+        
+        <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+          <div class="mentor-avatar mentor-avatar-text" style="width: 52px; height: 52px; font-size: 20px;">DA</div>
+          <div>
+            <h2 id="prof-modal-title" class="mentor-name-text" style="font-family: var(--font-serif); font-size: 22px; font-weight: 600;">Sir Muhammad Saleem</h2>
+            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">
+              <span class="mentor-subject-text">Object-Oriented Programming (OOP) / Java</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="background-color: var(--bg-surface-subtle); border: 1px solid var(--border-warm); border-radius: var(--radius-inner); padding: 18px; margin-bottom: 18px;">
+          <h4 style="font-size: 13.5px; font-weight: 600; margin-bottom: 8px;">Faculty Credentials & Course Context</h4>
+          <div class="prof-info-list" style="gap: 8px;">
+            <div class="prof-info-row">
+              <span class="prof-info-label">University:</span>
+              <span class="mentor-institution-text">Dawood University of Engineering and Technology</span>
+            </div>
+            <div class="prof-info-row">
+              <span class="prof-info-label">Department:</span>
+              <span>Computer Science</span>
+            </div>
+            <div class="prof-info-row">
+              <span class="prof-info-label">Office Hours:</span>
+              <span>Monday & Wednesday, 2:00 PM – 4:00 PM</span>
+            </div>
+            <div class="prof-info-row">
+              <span class="prof-info-label">Assignment Due:</span>
+              <span>Thursday 11:59 PM via university portal</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 20px;">
+          <strong>Stand-In Authorization:</strong> This digital assistant is grounded in 30 structured interview responses given by the professor. It is programmed to explain OOP concepts, clarify course requirements, and guide programming problem solving. It possesses no authority to alter grades or approve exceptions.
+        </div>
+
+        <div style="display: flex; justify-content: flex-end;">
+          <button class="settings-action-btn" onclick="document.getElementById('prof-profile-modal').classList.remove('open')">
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Entry Script -->
+  <script src="./app.js"></script>
 </body>
 </html>
