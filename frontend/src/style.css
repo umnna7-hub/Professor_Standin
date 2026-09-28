@@ -1,0 +1,14 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: #eef2f7; color: #18212f; }
+.page { min-height: 100vh; display: flex; justify-content: center; padding: 60px 20px; }
+.card { width: min(820px, 100%); background: white; border-radius: 18px; padding: 36px; box-shadow: 0 12px 35px rgba(0,0,0,.08); }
+.badge { display:inline-block; padding:6px 10px; border-radius:999px; background:#e9eef7; font-size:12px; font-weight:700; letter-spacing:.08em; }
+h1 { margin:14px 0 8px; font-size:36px; }
+.subtitle { color:#5d6878; }
+.notice { margin:24px 0; padding:14px 16px; border-left:4px solid #607d9d; background:#f4f7fa; color:#4d5968; }
+label { display:block; margin-bottom:8px; font-weight:700; }
+textarea { width:100%; min-height:130px; resize:vertical; border:1px solid #cbd3dd; border-radius:10px; padding:14px; font:inherit; }
+button { margin-top:14px; border:0; border-radius:10px; padding:13px 20px; font-weight:700; cursor:pointer; }
+button:disabled { cursor:wait; opacity:.6; }
+.answer { margin-top:28px; padding:22px; border-radius:12px; background:#f5f7fa; line-height:1.6; }
+.answer h2 { margin-top:0; }
